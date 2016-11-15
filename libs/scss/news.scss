@@ -1,0 +1,98 @@
+.item-head{
+    .img0{
+        .img1text{
+           width: 100%;
+           float: left;
+ 
+        }
+        p{
+           width: 100%;
+           font-size: 12px;
+           span:last-child{
+                float: right;
+           } 
+        }
+    }
+    .img1{
+        .img1text{
+           width: 60%;
+           float: left;
+           
+        }
+        
+        p{
+            white-space: normal;
+            font-size: 12px;
+           
+        }
+        img{
+            width: 40%;
+            float: left;
+            height: 80px;
+        }
+    }
+    .img3{
+        .img3text{
+           width: 100%;
+           float: left;
+        }
+        p{
+           width: 100%;
+           float: left;
+           white-space: normal;
+           font-size: 12px;
+           span:last-child{
+               float: right;
+           }           
+        }
+        img{
+            width: 33.333%;
+            height: 80px;
+            padding: 2% 1%;
+            float: left;
+        }
+    }
+    
+    
+}
+
+.detailBox{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background: white;
+    .fa-angle-left{
+        position: absolute;
+        top: 0;
+        left: 3%;
+        font-size: 30px;
+        color: white;
+        display: block;
+        width: 30px;
+        height: 44px;
+        line-height: 44px;
+    }
+    .detailBody{
+       top: 44px;
+       right: 0px;
+       left: 0px;
+       bottom: 0px;
+       position: absolute;
+       h5{
+           padding-bottom: 10px;
+           border-bottom: 1px solid #ccc;
+       }
+       img{
+           width: 100%;
+       }
+       p{
+           width: 100%;
+           span:last-child{
+               float: right;
+           }
+       }
+    }
+}

@@ -1,0 +1,57 @@
+body,div,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,td,textarea,th,ul,tr,img{
+	margin:0px;
+	padding: 0px;
+}
+ul,li{
+	list-style: none;
+	list-style-image: none ;
+}
+body{
+	font-family: 'Microsoft YaHei',"Comic Sans MS","幼圆","黑体",sans-serif;
+	font-size: 12px;
+	color: #2b2b2b;
+	background-color: #FFF;
+	height: 100%;
+	overflow-x: hidden;
+}
+input{
+	outline: none;
+	border: none;
+}
+a{
+	font-size: 12px;
+    color: #2b2b2b;
+    text-decoration: none;
+}
+a:hover{
+	color:#2F689D;
+	text-decoration:none;
+}
+div{
+	line-height: 150%;
+}
+fieldset,img,input{
+	border:0;
+	vertical-align:top;
+}
+
+/*清除浮动*/
+.clearfix{
+	*zoom:1;
+}
+.clear{
+	clear:both;
+	height: 10px;
+	overflow: hidden;
+}
+.clearfix:after{
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	content::"";
+	font-size: 0;
+}
+img{
+	border: none;
+}

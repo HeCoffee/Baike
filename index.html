@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>H百科</title>
+		<!--css-->
+		<link rel="stylesheet" type="text/css" href="libs/css/ionic.min.css" />
+		<link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="libs/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="libs/css/index.css" />
+		
+		<!--js-->
+		<script src="libs/js/ionic.bundle.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/angular/angular.global.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="heapp">
+		<ion-side-menus ng-controller="mycontent">
+			<!-- 中间内容 -->
+			<ion-side-menu-content>
+				<!--头部-->
+				<div class="bar bar-header">
+					<h1 class="title">H百科</h1>
+				</div>
+				<div class="bar bar-subheader">
+					<span class="active" ng-click="jump(0)">段子</span>
+					<span ng-click="jump(1)">美图</span>
+					<span ng-click="jump(2)">听心情</span>
+					<span ng-click="jump(3)">看心情</span>					
+				</div>
+
+				<ion-slide-box id="he-content" show-pager="false" on-slide-changed="slideHasChanged($index)">
+					<ion-slide>
+						<ion-content>
+							<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh(29)">
+							</ion-refresher>
+							<div class="box blue">
+								<div class="emptybox"></div>
+								<ul class="list" on-swipe-right='toggleLeft()'>
+									<li class="item" ng-repeat="item in data[29]">
+										<div class="item-head">
+											<span><img ng-src="{{item.profile_image}}"/></span><b ng-bind="item.name"></b>
+										</div>
+										<div class="textbox" ng-bind="item.text">
+										</div>
+										<div class="item-footer"><i class="fa fa-thumbs-o-up"></i><b ng-bind="item.love"></b><i class="fa fa-thumbs-o-down"></i><b ng-bind="item.hate"></b> <b ng-bind="item.create_time"></b></div>
+									</li>
+								</ul>
+								<ion-infinite-scroll on-infinite="loadMore(29)" distance="1%">
+								</ion-infinite-scroll>
+							</div>
+						</ion-content>
+					</ion-slide>
+					<ion-slide>
+						<ion-content>
+							<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh(10)">
+							</ion-refresher>
+							<div class="box yellow">
+								<div class="emptybox"></div>
+								<ul class="list">
+									<li class="item" ng-repeat="item in data[10]">
+										<div class="item-head">
+											<span><img ng-src="{{item.profile_image}}"/></span><b ng-bind="item.name"></b>
+										</div>
+										<div class="textbox" >
+											<p ng-bind="item.text"></p>
+											<div class="imgbox">
+												<img ng-src="{{item.image0}}" ng-click="bigImg(item.image0)"/>
+											</div>
+										</div>
+										<div class="item-footer"><i class="fa fa-thumbs-o-up"></i><b ng-bind="item.love"></b><i class="fa fa-thumbs-o-down"></i><b ng-bind="item.hate"></b> <b ng-bind="item.create_time"></b></div>
+									</li>
+								</ul>
+								<ion-infinite-scroll on-infinite="loadMore(10)" distance="1%">
+								</ion-infinite-scroll>
+							</div>
+						</ion-content>						
+					</ion-slide>
+					<ion-slide on-slide-changed="slideHasChanged(index)">
+						<ion-content>
+							<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh(31)"></ion-refresher>
+							<div class="box pink">
+								<div class="emptybox"></div>
+								<ul class="list">
+									<li class="item" ng-repeat="item in data[31]">
+										<div class="item-head">
+											<span><img ng-src="{{item.profile_image}}"/></span><b ng-bind="item.name"></b>
+										</div>
+										<div class="textbox" >
+											<p ng-bind="item.text"></p>
+											<div class="imgbox">
+												<img ng-src="{{item.image3}}" ng-click="bigImg(item.image3)"/>
+											</div>
+											<audio ng-src="{{item.voice_uri | trusted}}" controls="controls" preload="metadata"></audio>
+										</div>
+										<div class="item-footer"><i class="fa fa-thumbs-o-up"></i><b ng-bind="item.love"></b><i class="fa fa-thumbs-o-down"></i><b ng-bind="item.hate"></b> <b ng-bind="item.create_time"></b></div>
+									</li>
+								</ul>
+								<ion-infinite-scroll on-infinite="loadMore(31)" distance="1%">
+								</ion-infinite-scroll>
+							</div>
+						</ion-content>	
+					</ion-slide>
+					<ion-slide on-slide-changed="slideHasChanged(index)">
+						<ion-content>
+							<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh(41)"></ion-refresher>
+							<div class="box pink">
+								<div class="emptybox"></div>
+								<ul class="list">
+									<li class="item" ng-repeat="item in data[41]">
+										<div class="item-head">
+											<span><img ng-src="{{item.profile_image}}"/></span><b ng-bind="item.name"></b>
+										</div>
+										<div class="textbox" >
+											<p ng-bind="item.text" ></p>
+											<div class="videobox" ng-click="playVideo(item.video_uri)">
+												<i class="fa fa-play-circle"></i>
+												<!--<video ng-src="{{item.video_uri | trusted}}"controls="controls" preload="metadata"   class="asd"></video>-->
+											</div>
+										</div>
+										<div class="item-footer"><i class="fa fa-thumbs-o-up"></i><b ng-bind="item.love"></b><i class="fa fa-thumbs-o-down"></i><b ng-bind="item.hate"></b> <b ng-bind="item.create_time"></b></div>
+									</li>
+								</ul>
+								<ion-infinite-scroll on-infinite="loadMore(41)" distance="1%">
+								</ion-infinite-scroll>
+							</div>
+						</ion-content>	
+					</ion-slide>
+				</ion-slide-box>
+				<!--看大图-->
+				<div class="fullbox" ng-if='bigbox' >
+					<div class="fullcontent">
+						<span class="fa-stack fa-lg" ng-click="esc()">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+						</span>
+						<ion-content style="border-radius: 5px;" ng-show='bigphoto'>
+							<img ng-src="{{bigimg}}">
+						</ion-content>
+						<video ng-src="{{video | trusted}}"controls="controls" preload="metadata"   class="video" ng-if='bigvideo'>
+					</div>
+				</div>
+				
+			</ion-side-menu-content>
+
+			<!-- 左侧菜单 -->
+			<ion-side-menu side="left" on-swipe-left='toggleLeft()'>
+				<ul class="list" >
+					<li class="item">
+						<a href="news.html">新闻</a>
+					</li>
+					<li class="item">
+						<a href="index.html">百科</a>
+					</li>
+				</ul>
+			</ion-side-menu>
+		</ion-side-menus>
+		<div class="mark"><i class="fa fa-spin fa-spinner"></i></div>
+	</body>
+
+</html>

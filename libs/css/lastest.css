@@ -1,0 +1,75 @@
+.wl-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-flow: wrap; }
+  .wl-container .scroller {
+    width: 100%; }
+    .wl-container .scroller .lastest_news {
+      display: block;
+      margin: 0px 5px;
+      padding: 10px 5px;
+      position: relative;
+      color: #000;
+      overflow: hidden; }
+      .wl-container .scroller .lastest_news .col-xs-8, .wl-container .scroller .lastest_news .col-xs-4 {
+        padding: 0px; }
+      .wl-container .scroller .lastest_news .onePic .news-msg .news-title {
+        font-weight: bold;
+        font-size: 14px; }
+      .wl-container .scroller .lastest_news .onePic .news-msg .news-details {
+        padding-top: 8px;
+        color: #555;
+        overflow: hidden; }
+        .wl-container .scroller .lastest_news .onePic .news-msg .news-details .news-source {
+          float: left; }
+        .wl-container .scroller .lastest_news .onePic .news-msg .news-details .news-pubDate {
+          float: left;
+          padding-left: 10px; }
+      .wl-container .scroller .lastest_news .onePic .news-image {
+        vertical-align: middle;
+        text-align: center; }
+        .wl-container .scroller .lastest_news .onePic .news-image img {
+          width: 90%;
+          height: 70px; }
+      .wl-container .scroller .lastest_news .otherPic .news-title {
+        font-weight: bold;
+        font-size: 14px; }
+      .wl-container .scroller .lastest_news .otherPic .news-image {
+        padding: 5px 0px;
+        display: flex;
+        vertical-align: middle; }
+        .wl-container .scroller .lastest_news .otherPic .news-image div {
+          flex: 1;
+          height: 70px;
+          margin-right: 5px; }
+          .wl-container .scroller .lastest_news .otherPic .news-image div img {
+            height: 70px;
+            width: 100%; }
+      .wl-container .scroller .lastest_news .otherPic .news-details {
+        padding-top: 8px;
+        color: #555;
+        overflow: hidden; }
+        .wl-container .scroller .lastest_news .otherPic .news-details .news-source {
+          float: left; }
+        .wl-container .scroller .lastest_news .otherPic .news-details .news-pubDate {
+          float: left;
+          padding-left: 10px; }
+    .wl-container .scroller .lastest_news:after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: #CCCCCC;
+      transform: scaleY(0.5);
+      -webkit-transform: scaleY(0.5);
+      -moz-transform: scaleY(0.5);
+      -o-transform: scaleY(0.5);
+      -ms-transform: scaleY(0.5); }

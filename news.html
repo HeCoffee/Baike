@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>H头条</title>
+		<!--css-->
+		<link rel="stylesheet" type="text/css" href="libs/css/ionic.min.css" />
+		<link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css"/>		
+		<link rel="stylesheet" type="text/css" href="libs/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="libs/css/news.css"/>
+		<!--JS-->
+		<script src="libs/js/ionic.bundle.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/angular/angular.global.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="libs/js/news.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body ng-app="mynews">
+		<ion-side-menus>
+			<!-- 中间内容 -->
+			<ion-side-menu-content ng-controller="myNewsBox">
+				<!--头部-->
+				<div class="bar bar-header">
+					<h1 class="title">H头条</h1>
+				</div>
+				<div class="bar bar-subheader">
+					<span class="active" ng-click="jump(0)">头条</span>
+					<span ng-click="jump(1)">互联网</span>
+					<span ng-click="jump(2)">科技</span>
+					<span ng-click="jump(3)">科普</span>					
+				</div>
+				<!--中间部分-->
+				<ion-slide-box id="he-content" show-pager="false" on-slide-changed="slideHasChanged($index)">
+					<ion-slide>
+						<ion-content>
+						<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh('')">
+						</ion-refresher>
+						<div class="box blue">
+							<div class="emptybox"></div>
+							<ul class="list">
+								<li class="item" ng-repeat="data in news['']" ng-click="detail(data)">
+									<div class="item-head">
+										<div class="img0" ng-if="data.imageurls.length == 0">
+											<div class="img0text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+											</div>
+										</div>
+										<div class="img1" ng-if="data.imageurls.length < 3 && data.imageurls.length>0">
+											<div class="img1text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p ng-bind="data.source"></p>
+												<p ng-bind="data.pubDate"></p>
+											</div>
+											<img ng-src="{{data.imageurls[0].url}}"/>
+										</div>
+										<div class="img3" ng-if=" data.imageurls.length >= 3">
+											<div class="img3text">
+												<p ng-bind="data.title" style="color: black;"></p>
+											</div>
+											<div class="img3box" >
+												<img ng-src="{{data.imageurls[0].url}}"/>
+												<img ng-src="{{data.imageurls[1].url}}"/>
+												<img ng-src="{{data.imageurls[2].url}}"/>
+											</div>
+											<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ion-infinite-scroll on-infinite="loadMore('')" distance="1%">
+							</ion-infinite-scroll>
+						</div>
+						</ion-content>
+					</ion-slide>
+					<ion-slide>
+						<ion-content>
+						<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh('互联网最新')">
+						</ion-refresher>
+						<div class="box blue">
+							<div class="emptybox"></div>
+							<ul class="list">
+								<li class="item" ng-repeat="data in news['互联网最新']" ng-click="detail(data)">
+									<div class="item-head">
+										<div class="img0" ng-if="data.imageurls.length == 0">
+											<div class="img0text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+											</div>
+										</div>
+										<div class="img1" ng-if="data.imageurls.length < 3 && data.imageurls.length>0">
+											<div class="img1text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p ng-bind="data.source"></p>
+												<p ng-bind="data.pubDate"></p>
+											</div>
+											<img ng-src="{{data.imageurls[0].url}}"/>
+										</div>
+										<div class="img3" ng-if=" data.imageurls.length >= 3">
+											<div class="img3text">
+												<p ng-bind="data.title" style="color: black;"></p>
+											</div>
+											<div class="img3box" >
+												<img ng-src="{{data.imageurls[0].url}}"/>
+												<img ng-src="{{data.imageurls[1].url}}"/>
+												<img ng-src="{{data.imageurls[2].url}}"/>
+											</div>
+											<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ion-infinite-scroll on-infinite="loadMore('互联网最新')" distance="1%">
+							</ion-infinite-scroll>
+						</div>
+						</ion-content>
+					</ion-slide>
+					<ion-slide>
+						<ion-content>
+						<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh('科技最新')">
+						</ion-refresher>
+						<div class="box blue">
+							<div class="emptybox"></div>
+							<ul class="list">
+								<li class="item" ng-repeat="data in news['科技最新']" ng-click="detail(data)">
+									<div class="item-head">
+										<div class="img0" ng-if="data.imageurls.length == 0">
+											<div class="img0text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+											</div>
+										</div>
+										<div class="img1" ng-if="data.imageurls.length < 3 && data.imageurls.length>0">
+											<div class="img1text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p ng-bind="data.source"></p>
+												<p ng-bind="data.pubDate"></p>
+											</div>
+											<img ng-src="{{data.imageurls[0].url}}"/>
+										</div>
+										<div class="img3" ng-if=" data.imageurls.length >= 3">
+											<div class="img3text">
+												<p ng-bind="data.title" style="color: black;"></p>
+											</div>
+											<div class="img3box" >
+												<img ng-src="{{data.imageurls[0].url}}"/>
+												<img ng-src="{{data.imageurls[1].url}}"/>
+												<img ng-src="{{data.imageurls[2].url}}"/>
+											</div>
+											<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ion-infinite-scroll on-infinite="loadMore('科技最新')" distance="1%">
+							</ion-infinite-scroll>
+						</div>
+						</ion-content>
+					</ion-slide>
+					<ion-slide>
+						<ion-content>
+						<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh('科普最新')">
+						</ion-refresher>
+						<div class="box blue">
+							<div class="emptybox"></div>
+							<ul class="list">
+								<li class="item" ng-repeat="data in news['科普最新']" ng-click="detail(data)">
+									<div class="item-head">
+										<div class="img0" ng-if="data.imageurls.length == 0">
+											<div class="img0text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+											</div>
+										</div>
+										<div class="img1" ng-if="data.imageurls.length < 3 && data.imageurls.length>0">
+											<div class="img1text">
+												<p ng-bind="data.title" style="color: black;"></p>
+												<p ng-bind="data.source"></p>
+												<p ng-bind="data.pubDate"></p>
+											</div>
+											<img ng-src="{{data.imageurls[0].url}}"/>
+										</div>
+										<div class="img3" ng-if=" data.imageurls.length >= 3">
+											<div class="img3text">
+												<p ng-bind="data.title" style="color: black;"></p>
+											</div>
+											<div class="img3box" >
+												<img ng-src="{{data.imageurls[0].url}}"/>
+												<img ng-src="{{data.imageurls[1].url}}"/>
+												<img ng-src="{{data.imageurls[2].url}}"/>
+											</div>
+											<p><span ng-bind="data.source"></span><span ng-bind="data.pubDate"></span></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ion-infinite-scroll on-infinite="loadMore('科普最新')" distance="1%">
+							</ion-infinite-scroll>
+						</div>
+						</ion-content>
+					</ion-slide>
+				</ion-slide-box>
+				<div class="detailBox" ng-if="showdetail">
+					<div class="bar bar-header">
+						
+						<h1 class="title">H头条</h1>
+						<i class="fa fa-angle-left" class="hideDetail" ng-click="hideDetail()"></i>
+					</div>
+					<ion-content>
+					<div class="detailBody">
+						<h5 class="title" ng-bind="detailObj.title" style="text-align: center;"></h5>
+						<div class="" ng-repeat="item in detailObj.allList">
+							<p ng-show="type(item)" ng-bind="item"></p>
+							<img ng-hide="type(item)" ng-src="{{item.url}}"></img>
+						</div>
+						<p><span ng-bind="detailObj.source"></span><span ng-bind="detailObj.pubDate"></span></p>
+					</div>
+					</ion-content>
+				</div>
+			</ion-side-menu-content>
+
+			<!-- 左侧菜单 -->
+			<ion-side-menu side="left">
+				<ul class="list" >
+					<li class="item">
+						<a href="news.html">新闻</a>
+					</li>
+					<li class="item">
+						<a href="index.html">百科</a>
+					</li>
+				</ul>
+			</ion-side-menu>
+		</ion-side-menus>
+		<div class="mark"><i class="fa fa-spin fa-spinner"></i></div>
+	</body>
+
+</html>

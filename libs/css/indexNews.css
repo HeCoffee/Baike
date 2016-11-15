@@ -1,0 +1,82 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+header{
+	width: 100%;
+	background: #d93a49;
+	height: 48px;
+	text-align: center;
+}
+header span{
+	display: inline-block;
+	width: auto;
+	height: 48px;
+	line-height: 48px;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+header span:last-child{
+	position: absolute;
+	right: 5px;
+	top: 15px;
+}
+.mui-slider-group{
+}
+.mui-slider-item{
+	
+}
+.content{
+	position: absolute;
+	top: 48px;
+	bottom: 0px;
+	width: 100%;
+}
+.mui-scroll p{
+	color: black;
+}
+.mui-spinner{
+	margin: 47%;
+}
+
+.mui-pull-bottom-tips{
+	text-align: center;
+    background-color: #efeff4;
+    font-size: 15px;
+    line-height: 40px;
+    color: #777;
+}
+a{
+	white-space: normal!important;
+}
+a .col-xs-8{
+	padding: 0;
+}
+
+.lastest_news .otherPic .news-image {
+    padding: 5px 0;
+    display:-webkit-flex;
+    display:-moz-flex;
+    display:-o-flex;
+    display:-ms-flex;
+    display:flex;
+    vertical-align: middle;
+}
+
+.lastest_news .otherPic .news-image div{
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex:1;
+    -o-flex:1;
+    flex:1;
+    height: 70px;
+    margin-right: 5px;
+}
+    
+
+.news-image img{
+	height: 70px;
+    width: 100%;
+}
